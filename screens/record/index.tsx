@@ -72,14 +72,12 @@ const Record = () => {
           textDayHeaderFontSize: 16,
         }}
       ></Calendar>
-      <Bill title="GGGG" amount={1}></Bill>
       <ScrollView style={styles.scrollContainer}>
         {dateBillMap.get(currentDate)?.map((billDataItem) => {
           return (
             <Bill
               title={billDataItem.title ? billDataItem.title : ''}
               amount={billDataItem.amount ? billDataItem.amount : 0}
-              key={new Date().getTime().toString()}
             ></Bill>
           )
         })}

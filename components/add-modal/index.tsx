@@ -43,7 +43,7 @@ const AddModal = (props: {
               prevBillData?.push(newBillData)
               props.setDateBillMap((prev) =>
                 prevBillData
-                  ? new Map(prev).set(props.currentDate, prevBillData)
+                  ? new Map([...prev, [props.currentDate, prevBillData]])
                   : prev,
               )
             } else {
