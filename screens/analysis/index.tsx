@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import styles from './index.styles'
 
 const Analysis = () => {
   return (
-    <View>
-      <Text>This is analysis screen.</Text>
+    <View style={styles.analysisContainer}>
+      <Text style={styles.textContainer}>This is analysis page</Text>
     </View>
   )
 }
