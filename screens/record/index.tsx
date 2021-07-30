@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import Bill from '../../components/bill'
-import { Calendar } from 'react-native-calendars'
-import { useState } from 'react'
+import { Calendar, CustomMarking } from 'react-native-calendars'
+import { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/AntDesign'
 import styles from './index.styles'
 import AddModal from '../../components/add-modal'
@@ -12,14 +12,44 @@ const Record = () => {
   const [currentDate, setCurrentDate] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
 
+  const customMarkStyles: CustomMarking = {
+    customStyles: {
+      container: {
+        backgroundColor: 'green',
+      },
+      text: {
+        color: 'black',
+        fontWeight: 'bold',
+      },
+    },
+  }
+  const [selectMarkStyle, setSelectMarkStyle] = useState({})
+
+  useEffect(() => {
+    var date = new Date().getDate()
+    var month = new Date().getMonth() + 1
+    var year = new Date().getFullYear()
+    if (month > 9) {
+      setCurrentDate(year + '-' + month + '-' + date)
+    } else {
+      setCurrentDate(year + '-0' + month + '-' + date)
+    }
+  }, [])
+
+  useEffect(() => {
+    setSelectMarkStyle({
+      [currentDate]: customMarkStyles,
+    })
+  }, [currentDate])
+
   return (
     <View style={styles.recordContainer}>
       <Calendar
         onDayPress={(day) => {
-          console.log('selected day', day)
           setCurrentDate(day.dateString)
         }}
-        style={styles.calendarContainer}
+        markingType={'custom'}
+        markedDates={selectMarkStyle}
       ></Calendar>
       <Bill title="GGGG" amount={1}></Bill>
       <ScrollView>
@@ -28,6 +58,7 @@ const Record = () => {
             <Bill
               title={billDataItem.title ? billDataItem.title : ''}
               amount={billDataItem.amount ? billDataItem.amount : 0}
+              key={new Date().getTime().toString()}
             ></Bill>
           )
         })}
