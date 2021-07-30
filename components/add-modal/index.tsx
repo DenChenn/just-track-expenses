@@ -65,7 +65,7 @@ const AddModal = (props: {
                 placeholderTextColor="#737373"
               />
               <TextInput
-                placeholder="Enter what tpye you spent on: "
+                placeholder="Enter the type you spent:"
                 onChangeText={formikProps.handleChange('billType')}
                 value={formikProps.values.billType}
                 style={styles.input}
@@ -76,6 +76,7 @@ const AddModal = (props: {
                 onChangeText={formikProps.handleChange('amount')}
                 value={formikProps.values.amount}
                 style={styles.input}
+                keyboardType="numeric"
                 placeholderTextColor="#737373"
               />
               <Button
