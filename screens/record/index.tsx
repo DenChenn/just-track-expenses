@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/AntDesign'
 import styles from './index.styles'
 import AddModal from '../../components/add-modal'
+import uuid from 'react-native-uuid'
 
 const Record = () => {
   const [dateBillMap, setDateBillMap] = useState(new Map<string, BillData[]>())
@@ -78,6 +79,7 @@ const Record = () => {
             <Bill
               title={billDataItem.title ? billDataItem.title : ''}
               amount={billDataItem.amount ? billDataItem.amount : 0}
+              key={uuid.v4().toString()}
             ></Bill>
           )
         })}
