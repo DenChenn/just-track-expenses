@@ -13,13 +13,23 @@ const AnalysisStack = createStackNavigator()
 const UserStack = createStackNavigator()
 
 const RecordStackScreen = () => (
-  <RecordStack.Navigator>
+  <RecordStack.Navigator
+    screenOptions={{
+      headerTintColor: 'white',
+      headerStyle: { backgroundColor: '#000000' },
+    }}
+  >
     <RecordStack.Screen name="Record" component={Record}></RecordStack.Screen>
   </RecordStack.Navigator>
 )
 
 const AnalysisStackScreen = () => (
-  <AnalysisStack.Navigator>
+  <AnalysisStack.Navigator
+    screenOptions={{
+      headerTintColor: 'white',
+      headerStyle: { backgroundColor: '#000000' },
+    }}
+  >
     <AnalysisStack.Screen
       name="Analysis"
       component={Analysis}
@@ -28,7 +38,12 @@ const AnalysisStackScreen = () => (
 )
 
 const UserStackScreen = () => (
-  <UserStack.Navigator>
+  <UserStack.Navigator
+    screenOptions={{
+      headerTintColor: 'white',
+      headerStyle: { backgroundColor: '#000000' },
+    }}
+  >
     <UserStack.Screen name="User" component={User}></UserStack.Screen>
   </UserStack.Navigator>
 )
@@ -55,7 +70,7 @@ const IconToggler = (
   }
 
   return (
-    <Icon name={iconName} color={focused ? '#31AAB7' : '#ACBAC3'} size={size} />
+    <Icon name={iconName} color={focused ? '#BB86FC' : '#ACBAC3'} size={size} />
   )
 }
 
@@ -66,6 +81,11 @@ const RootNavigator = () => {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, size }) => IconToggler(route, focused, size),
         })}
+        tabBarOptions={{
+          style: {
+            backgroundColor: '#000000',
+          },
+        }}
       >
         <Tab.Screen name="Record" component={RecordStackScreen} />
         <Tab.Screen name="Analysis" component={AnalysisStackScreen} />

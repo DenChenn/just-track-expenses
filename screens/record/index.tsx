@@ -15,10 +15,10 @@ const Record = () => {
   const customMarkStyles: CustomMarking = {
     customStyles: {
       container: {
-        backgroundColor: 'green',
+        backgroundColor: '#BB86FC',
       },
       text: {
-        color: 'black',
+        color: '#ffffff',
         fontWeight: 'bold',
       },
     },
@@ -50,9 +50,30 @@ const Record = () => {
         }}
         markingType={'custom'}
         markedDates={selectMarkStyle}
+        style={{
+          height: 350,
+        }}
+        // Specify theme properties to override specific styles for calendar parts. Default = {}
+        theme={{
+          calendarBackground: '#121212',
+          textSectionTitleColor: '#121212',
+          todayTextColor: '#BB86FC',
+          dayTextColor: '#ffffff',
+          textDisabledColor: '#d9e1e8',
+          dotColor: '#00adf5',
+          selectedDotColor: '#ffffff',
+          arrowColor: '#BB86FC',
+          monthTextColor: '#BB86FC',
+          indicatorColor: '#BB86FC',
+          textDayFontWeight: '300',
+          textDayHeaderFontWeight: '300',
+          textDayFontSize: 16,
+          textMonthFontSize: 16,
+          textDayHeaderFontSize: 16,
+        }}
       ></Calendar>
       <Bill title="GGGG" amount={1}></Bill>
-      <ScrollView>
+      <ScrollView style={styles.scrollContainer}>
         {dateBillMap.get(currentDate)?.map((billDataItem) => {
           return (
             <Bill
@@ -68,7 +89,7 @@ const Record = () => {
           <Icon
             name="plus"
             color="#000000"
-            size={36}
+            size={24}
             onPress={() => setModalOpen(true)}
           ></Icon>
         </View>

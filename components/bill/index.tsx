@@ -7,7 +7,7 @@ const Bill = (props: { title: string; amount: number }) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <Icon name="book" color="#e0361f" size={24}></Icon>
+        <Icon name="shoppingcart" color="#ffffff" size={30}></Icon>
       </View>
       <Text style={styles.titleContainer}>{props.title}</Text>
 
