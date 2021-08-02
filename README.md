@@ -1,2 +1,3 @@
 # just-track-expenses. 
-This is my side project for practicing react-native.
+This is my side project for practicing react-native.  
+Recently need a backend structure... still working on...
