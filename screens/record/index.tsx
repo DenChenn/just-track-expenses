@@ -93,6 +93,8 @@ const Record = () => {
             <Bill
               title={billDataItem.title ? billDataItem.title : ''}
               amount={billDataItem.amount ? billDataItem.amount : 0}
+              inOrOut={billDataItem.inOrOut ? billDataItem.inOrOut : ''}
+              billType={billDataItem.billType ? billDataItem.billType : ''}
               key={uuid.v4().toString()}
             ></Bill>
           )
