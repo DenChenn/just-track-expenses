@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import Bill from '../../components/bill'
 import { Calendar, CustomMarking } from 'react-native-calendars'
 import { useState, useEffect } from 'react'
@@ -30,11 +30,25 @@ const Record = () => {
     var date = new Date().getDate()
     var month = new Date().getMonth() + 1
     var year = new Date().getFullYear()
+    var dateString = ''
     if (month > 9) {
-      setCurrentDate(year + '-' + month + '-' + date)
+      if (date > 9) {
+        dateString =
+          year.toString() + '-' + month.toString() + '-' + date.toString()
+      } else {
+        dateString =
+          year.toString() + '-' + month.toString() + '-0' + date.toString()
+      }
     } else {
-      setCurrentDate(year + '-0' + month + '-' + date)
+      if (date > 9) {
+        dateString =
+          year.toString() + '-0' + month.toString() + '-' + date.toString()
+      } else {
+        dateString =
+          year.toString() + '-0' + month.toString() + '-0' + date.toString()
+      }
     }
+    setCurrentDate(dateString)
   }, [])
 
   useEffect(() => {
