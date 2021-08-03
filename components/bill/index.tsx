@@ -1,17 +1,35 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './index.styles'
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/Entypo'
 
-const Bill = (props: { title: string; amount: number }) => {
+const Bill = (props: {
+  title: string
+  amount: number
+  inOrOut: string
+  billType: string
+}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.iconContainer}>
-        <Icon name="shoppingcart" color="#ffffff" size={30}></Icon>
-      </View>
-      <Text style={styles.titleContainer}>{props.title}</Text>
+      <View style={styles.leftContainer}>
+        <View style={styles.iconContainer}>
+          <Icon name={props.billType} color="#000000" size={24}></Icon>
+        </View>
 
-      <Text style={styles.amountContainer}>{props.amount.toString()}</Text>
+        <Text style={styles.titleContainer}>{props.title}</Text>
+      </View>
+      <View style={styles.rightContainer}>
+        <Text
+          style={[
+            styles.amountContainer,
+            {
+              color: props.inOrOut === 'income' ? 'green' : 'red',
+            },
+          ]}
+        >
+          {props.amount.toString()}
+        </Text>
+      </View>
     </View>
   )
 }
