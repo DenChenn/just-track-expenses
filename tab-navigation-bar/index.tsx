@@ -6,6 +6,7 @@ import Analysis from '../screens/analysis/index'
 import Record from '../screens/record/index'
 import User from '../screens/user/index'
 import Icon from 'react-native-vector-icons/AntDesign'
+import { View, Text } from 'react-native'
 
 const Tab = createBottomTabNavigator()
 const RecordStack = createStackNavigator()
@@ -48,21 +49,60 @@ const UserStackScreen = () => (
   </UserStack.Navigator>
 )
 
+interface TabContainerProps {
+  label?: string
+  focused?: boolean
+}
+
+const TabContainer: React.FunctionComponent<TabContainerProps> = ({
+  children,
+  label,
+  focused,
+}) => (
+  <>
+    {focused ? (
+      <View
+        style={{
+          borderTopWidth: 1,
+          borderTopColor: '#000000',
+          alignItems: 'center',
+          flex: 1,
+          paddingTop: 7,
+        }}
+      >
+        {children}
+        <Text style={{ color: '#000000', marginTop: 6 }}>{label}</Text>
+      </View>
+    ) : (
+      <View
+        style={{ width: '100%', alignItems: 'center', flex: 1, paddingTop: 8 }}
+      >
+        {children}
+        <Text style={{ color: '#ACBAC3', marginTop: 6 }}>{label}</Text>
+      </View>
+    )}
+  </>
+)
+
 const IconToggler = (
   route: RouteProp<Record<string, object | undefined>, string>,
   focused: boolean,
   size: number,
 ) => {
   let iconName = ''
+  let label = ''
 
   switch (route.name) {
     case 'Record':
+      label = 'Record'
       iconName = 'book'
       break
     case 'Analysis':
+      label = 'Analysis'
       iconName = 'appstore-o'
       break
     case 'User':
+      label = 'User'
       iconName = 'user'
       break
     default:
@@ -70,7 +110,13 @@ const IconToggler = (
   }
 
   return (
-    <Icon name={iconName} color={focused ? '#BB86FC' : '#ACBAC3'} size={size} />
+    <TabContainer label={label} focused={focused}>
+      <Icon
+        name={iconName}
+        color={focused ? '#000000' : '#ACBAC3'}
+        size={size}
+      />
+    </TabContainer>
   )
 }
 
@@ -83,8 +129,9 @@ const RootNavigator = () => {
         })}
         tabBarOptions={{
           style: {
-            backgroundColor: '#000000',
+            backgroundColor: '#FFFFFF',
           },
+          showLabel: false,
         }}
       >
         <Tab.Screen name="Record" component={RecordStackScreen} />
