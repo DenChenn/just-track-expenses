@@ -25,7 +25,7 @@ const AddModal = (props: {
           <Icon
             name="close"
             size={24}
-            color="#ffffff"
+            color="#000000"
             onPress={() => props.setModalOpen(false)}
           ></Icon>
         </View>
@@ -62,14 +62,14 @@ const AddModal = (props: {
                 onChangeText={formikProps.handleChange('title')}
                 value={formikProps.values.title}
                 style={styles.input}
-                placeholderTextColor="#737373"
+                placeholderTextColor="#ACBAC4"
               />
               <TextInput
                 placeholder="Enter the type you spent:"
                 onChangeText={formikProps.handleChange('billType')}
                 value={formikProps.values.billType}
                 style={styles.input}
-                placeholderTextColor="#737373"
+                placeholderTextColor="#ACBAC4"
               />
               <TextInput
                 placeholder="Enter how nuch you spent: "
@@ -77,17 +77,19 @@ const AddModal = (props: {
                 value={formikProps.values.amount}
                 style={styles.input}
                 keyboardType="numeric"
-                placeholderTextColor="#737373"
+                placeholderTextColor="#ACBAC4"
               />
-              <Button
-                title="Submit"
-                color="#BB86FC"
-                onPress={
-                  (formikProps.handleSubmit as unknown) as (
-                    ev: NativeSyntheticEvent<NativeTouchEvent>,
-                  ) => void
-                }
-              ></Button>
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Finish"
+                  color="#000000"
+                  onPress={
+                    (formikProps.handleSubmit as unknown) as (
+                      ev: NativeSyntheticEvent<NativeTouchEvent>,
+                    ) => void
+                  }
+                ></Button>
+              </View>
             </View>
           )}
         </Formik>

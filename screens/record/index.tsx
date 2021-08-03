@@ -16,7 +16,7 @@ const Record = () => {
   const customMarkStyles: CustomMarking = {
     customStyles: {
       container: {
-        backgroundColor: '#BB86FC',
+        backgroundColor: '#000000',
       },
       text: {
         color: '#ffffff',
@@ -70,20 +70,20 @@ const Record = () => {
         }}
         // Specify theme properties to override specific styles for calendar parts. Default = {}
         theme={{
-          calendarBackground: '#121212',
-          textSectionTitleColor: '#121212',
-          todayTextColor: '#BB86FC',
-          dayTextColor: '#ffffff',
+          calendarBackground: '#ffffff',
+          textSectionTitleColor: '#ffffff',
+          todayTextColor: '#31AAB7',
+          dayTextColor: '#000000',
           textDisabledColor: '#d9e1e8',
           dotColor: '#00adf5',
           selectedDotColor: '#ffffff',
-          arrowColor: '#BB86FC',
-          monthTextColor: '#BB86FC',
+          arrowColor: '#000000',
+          monthTextColor: '#000000',
           indicatorColor: '#BB86FC',
           textDayFontWeight: '300',
           textDayHeaderFontWeight: '300',
           textDayFontSize: 16,
-          textMonthFontSize: 16,
+          textMonthFontSize: 20,
           textDayHeaderFontSize: 16,
         }}
       ></Calendar>

@@ -4,17 +4,20 @@ export default StyleSheet.create({
   recordContainer: {
     flexDirection: 'column',
     height: '100%',
-    backgroundColor: '#404040',
+    backgroundColor: '#ffffff',
   },
   calendarContainer: {},
   iconContainer: {
     height: '10%',
     flexDirection: 'row-reverse',
     alignItems: 'center',
-    backgroundColor: '#404040',
+    backgroundColor: '#ffffff',
   },
   iconOuter: {
-    backgroundColor: '#BB86FC',
+    backgroundColor: '#ffffff',
+    shadowColor: '#ACBAC3',
+    shadowRadius: 8,
+    shadowOpacity: 1,
     borderRadius: 30,
     marginRight: 20,
     width: 60,
@@ -24,6 +27,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   scrollContainer: {
-    backgroundColor: '#404040',
+    backgroundColor: '#ffffff',
   },
 })

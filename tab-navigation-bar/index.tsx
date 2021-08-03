@@ -14,23 +14,13 @@ const AnalysisStack = createStackNavigator()
 const UserStack = createStackNavigator()
 
 const RecordStackScreen = () => (
-  <RecordStack.Navigator
-    screenOptions={{
-      headerTintColor: 'white',
-      headerStyle: { backgroundColor: '#000000' },
-    }}
-  >
+  <RecordStack.Navigator>
     <RecordStack.Screen name="Record" component={Record}></RecordStack.Screen>
   </RecordStack.Navigator>
 )
 
 const AnalysisStackScreen = () => (
-  <AnalysisStack.Navigator
-    screenOptions={{
-      headerTintColor: 'white',
-      headerStyle: { backgroundColor: '#000000' },
-    }}
-  >
+  <AnalysisStack.Navigator>
     <AnalysisStack.Screen
       name="Analysis"
       component={Analysis}
@@ -39,12 +29,7 @@ const AnalysisStackScreen = () => (
 )
 
 const UserStackScreen = () => (
-  <UserStack.Navigator
-    screenOptions={{
-      headerTintColor: 'white',
-      headerStyle: { backgroundColor: '#000000' },
-    }}
-  >
+  <UserStack.Navigator>
     <UserStack.Screen name="User" component={User}></UserStack.Screen>
   </UserStack.Navigator>
 )
