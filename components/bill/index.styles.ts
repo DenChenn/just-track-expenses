@@ -8,7 +8,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     shadowColor: '#ACBAC3',
     shadowRadius: 10,
-    shadowOpacity: 1,
+    shadowOpacity: 0.6,
     borderRadius: 15,
     height: 80,
     marginHorizontal: 20,
@@ -16,19 +16,21 @@ export default StyleSheet.create({
   },
   leftContainer: {
     flexDirection: 'row',
+    width: '70%',
   },
   rightContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
+    width: '30%',
   },
   iconContainer: {
-    paddingLeft: 20,
+    width: '20%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   titleContainer: {
     fontSize: 24,
-    padding: 10,
+    width: '80%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

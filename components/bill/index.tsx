@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from './index.styles'
-import Icon from 'react-native-vector-icons/Entypo'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const Bill = (props: {
   title: string
