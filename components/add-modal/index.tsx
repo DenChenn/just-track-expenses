@@ -8,6 +8,8 @@ import {
   NativeSyntheticEvent,
   NativeTouchEvent,
   Text,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native'
 import { Formik } from 'formik'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -120,86 +122,91 @@ const AddModal = (props: {
       </View>
       <Formik initialValues={{ title: '', amount: '' }} onSubmit={handleSubmit}>
         {(formikProps) => (
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Topic: "
-              onChangeText={formikProps.handleChange('title')}
-              value={formikProps.values.title}
-              style={styles.input}
-              placeholderTextColor="#ACBAC4"
-            />
-            <TextInput
-              placeholder="Amount: "
-              onChangeText={formikProps.handleChange('amount')}
-              value={formikProps.values.amount}
-              style={styles.input}
-              keyboardType="numeric"
-              placeholderTextColor="#ACBAC4"
-            />
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>Choose Spending Type</Text>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}
+          >
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="Topic: "
+                onChangeText={formikProps.handleChange('title')}
+                value={formikProps.values.title}
+                style={styles.input}
+                placeholderTextColor="#ACBAC4"
+              />
+              <TextInput
+                placeholder="Amount: "
+                onChangeText={formikProps.handleChange('amount')}
+                value={formikProps.values.amount}
+                style={styles.input}
+                keyboardType="numeric"
+                placeholderTextColor="#ACBAC4"
+              />
+              <View style={styles.titleContainer}>
+                <Text style={styles.titleText}>Choose Spending Type</Text>
+              </View>
+              <View style={styles.inOutPickerContainer}>
+                <Picker
+                  selectedValue={selectedInOrOut}
+                  style={{
+                    position: 'relative',
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  onValueChange={(itemValue) => setSelectedInOrOut(itemValue)}
+                >
+                  <Picker.Item label="Income" value="income" />
+                  <Picker.Item label="Expenses" value="expenses" />
+                </Picker>
+              </View>
+              <View style={styles.titleContainer}>
+                <Text style={styles.titleText}>Choose Spending Type</Text>
+              </View>
+              <View style={styles.typePickerContainer}>
+                <Picker
+                  selectedValue={selectedType}
+                  style={{
+                    position: 'relative',
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  onValueChange={(itemValue) => setSelectedType(itemValue)}
+                >
+                  <Picker.Item
+                    label={typeOption[0].label}
+                    value={typeOption[0].value}
+                  />
+                  <Picker.Item
+                    label={typeOption[1].label}
+                    value={typeOption[1].value}
+                  />
+                  <Picker.Item
+                    label={typeOption[2].label}
+                    value={typeOption[2].value}
+                  />
+                  <Picker.Item
+                    label={typeOption[3].label}
+                    value={typeOption[3].value}
+                  />
+                  <Picker.Item
+                    label={typeOption[4].label}
+                    value={typeOption[4].value}
+                  />
+                </Picker>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Finish"
+                  color="#000000"
+                  onPress={
+                    (formikProps.handleSubmit as unknown) as (
+                      ev: NativeSyntheticEvent<NativeTouchEvent>,
+                    ) => void
+                  }
+                ></Button>
+              </View>
             </View>
-            <View style={styles.inOutPickerContainer}>
-              <Picker
-                selectedValue={selectedInOrOut}
-                style={{
-                  position: 'relative',
-                  height: '100%',
-                  width: '100%',
-                }}
-                onValueChange={(itemValue) => setSelectedInOrOut(itemValue)}
-              >
-                <Picker.Item label="Income" value="income" />
-                <Picker.Item label="Expenses" value="expenses" />
-              </Picker>
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>Choose Spending Type</Text>
-            </View>
-            <View style={styles.typePickerContainer}>
-              <Picker
-                selectedValue={selectedType}
-                style={{
-                  position: 'relative',
-                  height: '100%',
-                  width: '100%',
-                }}
-                onValueChange={(itemValue) => setSelectedType(itemValue)}
-              >
-                <Picker.Item
-                  label={typeOption[0].label}
-                  value={typeOption[0].value}
-                />
-                <Picker.Item
-                  label={typeOption[1].label}
-                  value={typeOption[1].value}
-                />
-                <Picker.Item
-                  label={typeOption[2].label}
-                  value={typeOption[2].value}
-                />
-                <Picker.Item
-                  label={typeOption[3].label}
-                  value={typeOption[3].value}
-                />
-                <Picker.Item
-                  label={typeOption[4].label}
-                  value={typeOption[4].value}
-                />
-              </Picker>
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                title="Finish"
-                color="#000000"
-                onPress={
-                  (formikProps.handleSubmit as unknown) as (
-                    ev: NativeSyntheticEvent<NativeTouchEvent>,
-                  ) => void
-                }
-              ></Button>
-            </View>
-          </View>
+          </TouchableWithoutFeedback>
         )}
       </Formik>
     </Modal>
