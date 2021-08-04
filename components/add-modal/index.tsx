@@ -10,13 +10,44 @@ import {
   Text,
 } from 'react-native'
 import { Formik } from 'formik'
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 interface SubmitObject {
   title: string
   amount: string
+}
+
+interface ChosenType {
+  label: string
+  value: string
+}
+
+const IncomeChosenList: ChosenType[] = [
+  { label: 'Salary', value: 'money' },
+  { label: 'Investment', value: 'bitcoin' },
+  { label: 'Rent', value: 'building' },
+  { label: 'Tutor', value: 'graduation-cap' },
+  { label: 'Projects', value: 'task' },
+]
+
+const ExpensesChosenList: ChosenType[] = [
+  { label: 'Food', value: 'cutlery' },
+  { label: 'Shopping', value: 'shopping-cart' },
+  { label: 'Living', value: 'home' },
+  { label: 'Transportation', value: 'taxi' },
+  { label: 'Entertainment', value: 'gamepad' },
+]
+
+function FindIndex(chosenTypeList: ChosenType[], target: string) {
+  for (var i = 0; i < chosenTypeList.length; i++) {
+    if (chosenTypeList[i].value === target) {
+      return i
+    }
+  }
+  return 0
 }
 
 const AddModal = (props: {
@@ -49,8 +80,29 @@ const AddModal = (props: {
     }
     props.setModalOpen(false)
   }
-  const [selectedType, setSelectedType] = useState('Food')
-  const [selectedInOrOut, setSelectedInOrOut] = useState('Income')
+  const [selectedType, setSelectedType] = useState('money')
+  const [selectedInOrOut, setSelectedInOrOut] = useState('income')
+  const [typeOption, setTypeOption] = useState<ChosenType[]>([
+    { label: 'Food', value: 'cutlery' },
+    { label: 'Shopping', value: 'shopping-cart' },
+    { label: 'Living', value: 'home' },
+    { label: 'Transportation', value: 'taxi' },
+    { label: 'Entertainment', value: 'gamepad' },
+  ])
+
+  useEffect(() => {
+    if (selectedInOrOut === 'income') {
+      setTypeOption(IncomeChosenList)
+      setSelectedType(
+        IncomeChosenList[FindIndex(IncomeChosenList, selectedType)].value,
+      )
+    } else {
+      setTypeOption(ExpensesChosenList)
+      setSelectedType(
+        ExpensesChosenList[FindIndex(ExpensesChosenList, selectedType)].value,
+      )
+    }
+  }, [selectedInOrOut])
 
   return (
     <Modal
@@ -70,14 +122,14 @@ const AddModal = (props: {
         {(formikProps) => (
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="Enter what you spent: "
+              placeholder="Topic: "
               onChangeText={formikProps.handleChange('title')}
               value={formikProps.values.title}
               style={styles.input}
               placeholderTextColor="#ACBAC4"
             />
             <TextInput
-              placeholder="Enter how nuch you spent: "
+              placeholder="Amount: "
               onChangeText={formikProps.handleChange('amount')}
               value={formikProps.values.amount}
               style={styles.input}
@@ -114,11 +166,26 @@ const AddModal = (props: {
                 }}
                 onValueChange={(itemValue) => setSelectedType(itemValue)}
               >
-                <Picker.Item label="Food" value="cake" />
-                <Picker.Item label="Shopping" value="shopping-cart" />
-                <Picker.Item label="House" value="home" />
-                <Picker.Item label="Transportation" value="gauge" />
-                <Picker.Item label="Entertainment" value="game-controller" />
+                <Picker.Item
+                  label={typeOption[0].label}
+                  value={typeOption[0].value}
+                />
+                <Picker.Item
+                  label={typeOption[1].label}
+                  value={typeOption[1].value}
+                />
+                <Picker.Item
+                  label={typeOption[2].label}
+                  value={typeOption[2].value}
+                />
+                <Picker.Item
+                  label={typeOption[3].label}
+                  value={typeOption[3].value}
+                />
+                <Picker.Item
+                  label={typeOption[4].label}
+                  value={typeOption[4].value}
+                />
               </Picker>
             </View>
             <View style={styles.buttonContainer}>
