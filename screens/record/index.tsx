@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/AntDesign'
 import styles from './index.styles'
 import AddModal from '../../components/add-modal'
 import uuid from 'react-native-uuid'
+import { BillData } from '../../models'
+import { FlatList } from 'react-native-gesture-handler'
 
 const Record = () => {
   const [dateBillMap, setDateBillMap] = useState(new Map<string, BillData[]>())
@@ -87,19 +89,36 @@ const Record = () => {
           textDayHeaderFontSize: 16,
         }}
       ></Calendar>
-      <ScrollView style={styles.scrollContainer}>
-        {dateBillMap.get(currentDate)?.map((billDataItem) => {
+      <FlatList
+        style={styles.scrollContainer}
+        data={dateBillMap.get(currentDate)}
+        renderItem={({ item }) => {
           return (
             <Bill
-              title={billDataItem.title ? billDataItem.title : ''}
-              amount={billDataItem.amount ? billDataItem.amount : 0}
-              inOrOut={billDataItem.inOrOut ? billDataItem.inOrOut : ''}
-              billType={billDataItem.billType ? billDataItem.billType : ''}
-              key={uuid.v4().toString()}
+              title={item.title ? item.title : ''}
+              amount={item.amount ? item.amount : 0}
+              inOrOut={item.inOrOut ? item.inOrOut : ''}
+              billType={item.billType ? item.billType : ''}
+              key={item}
+              onSwipe={() => {
+                const newDateBillMap = new Map<string, BillData[]>(dateBillMap)
+                const currentDateArray = newDateBillMap.get(currentDate)
+                for (var i = 0; i < currentDateArray.length; i++) {
+                  if (currentDateArray[i].id === item.id) {
+                    currentDateArray.splice(i, 1)
+                    newDateBillMap.delete(currentDate)
+                    newDateBillMap.set(currentDate, currentDateArray)
+                    setDateBillMap(newDateBillMap)
+                    break
+                  }
+                }
+              }}
             ></Bill>
           )
-        })}
-      </ScrollView>
+        }}
+        keyExtractor={(item) => item.id}
+      ></FlatList>
+
       <View style={styles.iconContainer}>
         <View style={styles.iconOuter}>
           <Icon
