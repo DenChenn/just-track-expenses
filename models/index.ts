@@ -1,4 +1,5 @@
-interface BillData {
+export interface BillData {
+  id: string
   title?: string
   amount?: number
   billType?: string
