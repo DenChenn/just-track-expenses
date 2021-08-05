@@ -16,6 +16,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { BillData } from '../../models/index'
+import uuid from 'react-native-uuid'
 
 interface SubmitObject {
   title: string
@@ -61,6 +63,7 @@ const AddModal = (props: {
 }) => {
   const handleSubmit = (values: SubmitObject) => {
     let newBillData: BillData = {
+      id: uuid.v4().toString(),
       title: values.title,
       amount: Number(values.amount),
       billType: selectedType,
