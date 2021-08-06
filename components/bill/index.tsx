@@ -38,7 +38,7 @@ const Bill = (props: {
   onSwipe: () => void
 }) => {
   const { width } = Dimensions.get('window')
-  const snapPointSet = [-width, -100, 0]
+  const snapPointSet = [-width, -70, 0]
 
   const {
     gestureHandler,
@@ -64,7 +64,7 @@ const Bill = (props: {
         cond(eq(to, -width), set(shouldRemove, 1)),
       ]),
       cond(shouldRemove, [
-        set(height, timing({ from: HEIGHT + 40, to: 0 })),
+        set(height, timing({ from: HEIGHT + 20, to: 0 })),
         cond(not(clockRunning(clock)), call([], props.onSwipe)),
       ]),
     ],
@@ -73,16 +73,18 @@ const Bill = (props: {
 
   return (
     <Animated.View style={[{ height }, styles.billConatiner]}>
-      <PanGestureHandler {...gestureHandler}>
-        <Animated.View style={{ transform: [{ translateX }] }}>
-          <BillLayout
-            title={props.title}
-            amount={props.amount}
-            inOrOut={props.inOrOut}
-            billType={props.billType}
-          ></BillLayout>
-        </Animated.View>
-      </PanGestureHandler>
+      <View style={{ height: 130, zIndex: -10 }}>
+        <PanGestureHandler {...gestureHandler}>
+          <Animated.View style={{ transform: [{ translateX }] }}>
+            <BillLayout
+              title={props.title}
+              amount={props.amount}
+              inOrOut={props.inOrOut}
+              billType={props.billType}
+            ></BillLayout>
+          </Animated.View>
+        </PanGestureHandler>
+      </View>
       <View style={styles.background}>
         <TouchableWithoutFeedback onPress={() => shouldRemove.setValue(1)}>
           <SVGAction x={abs(translateX)}></SVGAction>

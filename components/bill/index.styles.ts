@@ -6,6 +6,7 @@ export default StyleSheet.create({
     overflow: 'hidden',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignContent: 'center',
   },
   background: {
     flexDirection: 'row',

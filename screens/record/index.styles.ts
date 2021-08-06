@@ -32,6 +32,6 @@ export default StyleSheet.create({
   },
   scrollContainer: {
     backgroundColor: '#ffffff',
-    zIndex: 0,
+    flexDirection: 'column',
   },
 })

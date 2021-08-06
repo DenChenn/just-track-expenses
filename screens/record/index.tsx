@@ -118,7 +118,6 @@ const Record = () => {
         }}
         keyExtractor={(item) => item.id}
       ></FlatList>
-
       <View style={styles.iconContainer}>
         <View style={styles.iconOuter}>
           <Icon

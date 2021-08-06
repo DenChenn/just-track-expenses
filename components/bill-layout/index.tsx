@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import styles from './index.styles'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-export const HEIGHT = 80
+export const HEIGHT = 70
 
 const BillLayout = (props: {
   title: string
