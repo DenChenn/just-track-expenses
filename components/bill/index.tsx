@@ -6,6 +6,7 @@ import {
   PanGestureHandler,
   State,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native-gesture-handler'
 import {
   snapPoint,
@@ -36,6 +37,7 @@ const Bill = (props: {
   inOrOut: string
   billType: string
   onSwipe: () => void
+  scrollRef: React.RefObject<ScrollView>
 }) => {
   const { width } = Dimensions.get('window')
   const snapPointSet = [-width, -70, 0]
@@ -74,7 +76,10 @@ const Bill = (props: {
   return (
     <Animated.View style={[{ height }, styles.billConatiner]}>
       <View style={{ height: 130, zIndex: -10 }}>
-        <PanGestureHandler {...gestureHandler}>
+        <PanGestureHandler
+          {...gestureHandler}
+          simultaneousHandlers={props.scrollRef}
+        >
           <Animated.View style={{ transform: [{ translateX }] }}>
             <BillLayout
               title={props.title}

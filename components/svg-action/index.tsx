@@ -1,13 +1,7 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { View, Text } from 'react-native'
 import styles from './index.styles'
-import Animated, {
-  divide,
-  multiply,
-  interpolate,
-} from 'react-native-reanimated'
-import { HEIGHT } from '../bill-layout'
+import Animated, { divide } from 'react-native-reanimated'
 
 const SVGAction = (props: { x: Animated.Node<number> }) => {
   const size = props.x
